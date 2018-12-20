@@ -45,3 +45,19 @@ class Posts(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comments(models.Model):
+    # класс категории
+    user = models.ForeignKey(User, verbose_name='пользователь', on_delete=models.CASCADE)
+    post = models.ForeignKey(Posts, verbose_name='Статья', on_delete=models.CASCADE)
+    text = models.TextField('Тегкст статьи')
+    created = models.DateTimeField('Дата добавление', auto_now_add=True, null=True)
+    moderation = models.BooleanField('Модерация', default=False)
+
+    class Meta():
+        verbose_name = 'Коментарий'
+        verbose_name_plural = 'Коментарии'
+
+    def __str__(self):
+        return '{}'.format(self.user)
