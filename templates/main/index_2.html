@@ -1,0 +1,17 @@
+{% extends 'main/index.html' %}
+
+{% block description %}{{ new.description }}{% endblock %}
+{% block keywords %}{{ new.tag }}{% endblock %}
+{% block title %}{{ new.title }}{% endblock %}
+{% block  content %}
+    <h1 class="display-4 font-italic">{{ new.title }}</h1>
+    <p class="lead my-3">{{ new.text_min }}</p>
+    <p class="lead my-3">{{ new.created }}</p>
+    <p class="lead my-3">{{ new.user }}</p> --- <p>{{ new.category }}</p>
+    <hr>
+    <p>{% for tag in new.tag.all %}
+    {{ tag.title }}
+    {% endfor %}
+    </p>
+{% endblock %}
+
