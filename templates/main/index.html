@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <title>{% block title %}{% endblock %}</title>
 </head>
+{% autoescape off %}
 <body>
 <div class="container">
     <header class="blog-header py-3">
@@ -33,6 +34,7 @@
             </div>
         </div>
     </header>
+
     {% block content %}
 
 
@@ -51,6 +53,7 @@
 
     {% endblock content %}
 
+
     <footer class="blog-footer">
         <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
                 href="https://twitter.com/mdo">@mdo</a>.</p>
@@ -59,5 +62,6 @@
         </p>
     </footer>
 </body>
+{% endautoescape %}
 <script href="{% static 'js/bootstrap.min.js' %}"></script>
 </html>
