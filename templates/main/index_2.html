@@ -1,8 +1,9 @@
 {% extends 'main/index.html' %}
-
+{% load staticfiles %}
 {% block description %}{{ new.description }}{% endblock %}
 {% block keywords %}{{ new.tag }}{% endblock %}
 {% block title %}{{ new.title }}{% endblock %}
+{% block css %}{% static 'index.css' %}{% endblock %}
 {% block  content %}
     <h1 class="display-4 font-italic">{{ new.title }}</h1>
     <p class="lead my-3">{{ new.text_min }}</p>
@@ -10,8 +11,26 @@
     <p class="lead my-3">{{ new.user }}</p> --- <p>{{ new.category }}</p>
     <hr>
     <p>{% for tag in new.tag.all %}
-    {{ tag.title }}
+        {{ tag.title }}
     {% endfor %}
     </p>
+    <hr>
+    {% for com in comment %}
+        <div>Пользователь - {{ com.user }}</div><br>
+        <div class="form-left-decoration"></div>
+        <div class="koment">{{ com.text }}</div><br>
+        <div>Дата - {{ com.created }}</div><br><br>
+    {% endfor %}
+    <hr>
+    <form class="decor" action="" method="post">{% csrf_token %}
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            {{ form.as_p }}
+{#            <textarea placeholder="Сообщение..." rows="3"></textarea>#}
+            <input type="submit" value="Отправить">
+        </div>
+    </form>
 {% endblock %}
 
